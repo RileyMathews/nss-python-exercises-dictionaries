@@ -18,5 +18,23 @@ def calculate_price(filter=None):
         for ticker, company in stock_dict.items():
             if purchase[0] == ticker and (filter == None or filter == ticker):
                 print(f"{company} stock bought for {purchase[1] * purchase[3]}")
-    
-calculate_price()
+
+def create_report():
+    dictionary = {}
+    for ticker, company in stock_dict.items():
+        price = 0
+        for purchase in purchases:
+            if purchase[0] == ticker:
+                price += purchase[1] * purchase[3]
+        dictionary[ticker] = price
+    return dictionary
+
+def print_report(report):
+    for ticker, price in report.items():
+        print(f"{ticker} stock currently valued at {price}")
+
+# calculate_price()
+stock_report = create_report()
+print_report(stock_report)
+
+
