@@ -11,7 +11,12 @@ purchases = [
     ("GE", 50, '15-dec-2004', 10)
 ]
 
-print(stock_dict)
-print(purchases)
 
-
+def calculate_price(filter=None):
+    total_price = 0
+    for purchase in purchases:
+        for ticker, company in stock_dict.items():
+            if purchase[0] == ticker and (filter == None or filter == ticker):
+                print(f"{company} stock bought for {purchase[1] * purchase[3]}")
+    
+calculate_price()
